@@ -26,7 +26,7 @@ def get_adr(new_adr, seen):    #функция, котороя ищет все �
     if len(new_adr) > 2:          #запуск рекурсии
         get_adr(new_adr, seen)
     else:                         #записывает все страницы сайта в тексторый файл, каждый в отдельную строку
-        put = open("all_адреса_сайта_тест.txt", "w", encoding='utf-8')
+        put = open("все_страницы_сайта.txt", "w", encoding='utf-8')
         put.write('\n'.join(seen))
         put.close()
         return seen
@@ -39,71 +39,10 @@ def adr_mail(c):             #функция, которая ищет все а�
             for text in requests.get(c[gr_1]).text.split(' ')    #информация со страницы записывается в текст
             for q in re.findall('[\w.][\w.]+@\w+\.\w+', text)    #находит в тексте электронные адреса
             }
-    viv = open("сортированные_почты.txt", "w", encoding='utf-8')  #запись электронных адресов в текстовый файл
+    viv = open("все_адреса.txt", "w", encoding='utf-8')  #запись электронных адресов в текстовый файл
     viv.write('\n'.join(words))
     viv.close()
 
 arr_link = get_adr(['http://www.mosigra.ru/'], ['http://www.mosigra.ru/']) #вызов функции с передачей стартовой страницы в виде списка
-o = adr_mail(arr_link)
+adr_mail(arr_link)
 
-print (o)
-
-
-
-# print(words[10])
-#
-# words = [
-#             'http:/' + words[i][7:len(words[i]) - 1]
-#             if words[i][7] == '/'
-#             else 'http://www.mosigra.ru/' + words[i][7:len(words[i]) - 1]
-#             for i in range(len(words))
-#         ]
-# words = list(words)
-#
-# print(words[10])
-#
-# new_adr = []
-#
-# for x in words:
-#     if x not in seen:
-#         new_adr.append(x)
-#
-# for x in words:
-#     if x not in seen:
-#         seen.append(x)
-#начало 2-й итерации рекурсии
-
-# words = []
-# for i in range(len(new_adr)):
-#
-#     for text in requests.get(new_adr[i]).text.split(' '):
-#         for q in re.findall('href="/.+/"', text):
-#             words.append(q)
-#             # print(q)
-#             # print("пикабу///////////////////////////////")
-#
-# words = {
-#             'http:/' + words[i][7:len(words[i]) - 2] + '/'
-#             if words[i][7] == '/'
-#             else 'http://www.mosigra.ru/' + words[i][7:len(words[i]) - 2] + '/'
-#             for i in range(len(words))
-#         }
-# words = list(words)
-#
-# #new_adr = [x for x in words if x not in seen]
-# print(len(words))
-# print(len(seen))
-# print(len(new_adr))
-#
-# new_adr = []
-#
-# for x in words:
-#     if x not in seen:
-#         new_adr.append(x)
-#
-# for x in words:
-#     if x not in seen:
-#         seen.append(x)
-#
-# print(len(new_adr))
-# print(len(seen))
