@@ -26,10 +26,10 @@ found3 = []
 mailsrch = re.compile(r'[\w.][\w.]+@[\w][\w\.]+[a-zA-Z]{1,4}')
 # заполняются списки совпавшими строками
 for link in links:
-    if link[0:3] == '//w':
-        site = requests.get('http:' + link).text.split(' ')
-        for line in site:
-            found1 += re.findall(mailsrch, line)
+    if link[0:3] == '//w':                        #ищет элемент списка с таким началом
+        site = requests.get('http:' + link).text.split(' ') #возвр.сп-к строк разд. проб-м
+        for line in site:                          #в сп-ке ищет РВ
+            found1 += re.findall(mailsrch, line)   #добавл.зн. к сущ. = нов.зн.
 
     elif link[0:2] == '//':
         site = requests.get('http:' + link).text.split(' ')
@@ -43,10 +43,13 @@ for link in links:
     else:
         pass
 
-    found = found1 + found2 + found3
+    found = found1 + found2 + found3       #все адреса
     found = set(found)
-    print(len(found))
+    print(len(found))                     #нашел 53
     print(found)
-
+    viv = open("всеадреса.txt", "w", encoding='utf-8')  #запись в текстовый файл
+    v = '\n'
+    viv.write(v.join(found))
+    viv.close()
 
 
