@@ -23,7 +23,7 @@ def get_adr(new_adr, seen):    #функция, котороя ищет все �
         if x not in seen:
             seen.append(x)
     if len(new_adr) > 2:          #запуск рекурсии
-        get_adr(new_adr, seen)
+       get_adr(new_adr, seen)
     else:                         #записывает все страницы сайта в тексторый файл, каждый в отдельную строку
         put = open("все_страницы_сайта.txt", "w", encoding='utf-8')
         put.write('\n'.join(seen))
@@ -41,6 +41,6 @@ def adr_mail(c):             #функция, которая ищет все а�
     viv.write('\n'.join(words))
     viv.close()
 
-arr_link = get_adr(['http://www.mosigra.ru/'], ['http://www.mosigra.ru/']) #вызов функции с передачей стартовой страницы в виде списка
+arr_link = get_adr(new_adr = ['http://www.mosigra.ru/'], seen = ['http://www.mosigra.ru/']) #вызов функции с передачей стартовой страницы в виде списка
 adr_mail(arr_link)
 
